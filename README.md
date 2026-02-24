@@ -2,6 +2,17 @@
 
 A simplified Next.js application for testing and QA evaluation. This demo app includes login, profile settings, and account management features.
 
+## What You Need to Do
+
+**Your task:** Write a comprehensive Playwright E2E test suite for this app and set up a CI pipeline to run tests on pull requests.
+
+👉 **[See the full task description →](TASKS.md)**
+
+The tasks document covers:
+- **Required:** Login flow tests, profile settings tests, account settings tests, responsive & navigation tests
+- **Bonus:** GitHub Actions CI pipeline, test infrastructure (fixtures, accessibility, tags)
+- Submission instructions (branch, PR, local verification)
+
 ## Setup
 
 1. **Clone the repository**
