@@ -10,6 +10,8 @@ This document describes the tasks you need to complete. Clone the repository, im
 
 ## Test Credentials
 
+Credentials are stored in `db.json` and can be changed via the app. Initial values:
+
 - **Email:** `user@test.com`
 - **Password:** `Password123`
 

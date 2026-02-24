@@ -29,7 +29,7 @@ A simplified Next.js application for testing and QA evaluation. This demo app in
 
 ## Test Credentials
 
-For testing the login flow:
+Credentials are stored in `db.json` and can be changed via the app. Initial values:
 
 - **Email:** `user@test.com`
 - **Password:** `Password123`
@@ -49,7 +49,6 @@ For testing the login flow:
 │   ├── app/           # Next.js App Router pages and API routes
 │   ├── components/    # Shared UI components
 │   └── lib/           # Utilities and auth helpers
-├── tests/             # Playwright E2E tests (candidates implement)
 └── ...
 ```
 

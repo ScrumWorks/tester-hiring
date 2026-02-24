@@ -1,13 +1,13 @@
 {
   "profile": {
-    "nickname": "Milan",
-    "bio": "aaaaaaaaaaaaaaaaaa",
+    "nickname": "testuser",
+    "bio": "",
     "dateOfBirth": "1990-01-01",
-    "country": "UK",
+    "country": "",
     "city": ""
   },
   "account": {
     "email": "user@test.com",
-    "password": "passw"
+    "password": "Password123"
   }
 }
