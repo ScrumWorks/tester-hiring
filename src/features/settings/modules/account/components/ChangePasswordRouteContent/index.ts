@@ -1,0 +1,1 @@
+export { ChangePasswordRouteContent } from "./ChangePasswordRouteContent";
