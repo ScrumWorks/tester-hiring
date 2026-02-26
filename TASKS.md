@@ -2,6 +2,15 @@
 
 This document describes the tasks you need to complete. Clone the repository, implement the tests as specified, and submit your solution as a pull request.
 
+## Notes
+
+- **Unexpected behavior:** The app may contain bugs. If you encounter behavior that doesn't match the spec or what you'd expect, document it in your PR description — a failing test may indicate an app issue rather than a test error.
+- The app uses **React Hook Form** with **Zod** (via `zodResolver`) for client-side validation. Forms use `mode: "onBlur"` and display error messages via `role="alert"` elements.
+- Settings modals use **Next.js parallel routes** and **intercepting routes**. Each form has its own route (e.g. `/settings/profile/nickname`, `/settings/profile/bio`). When clicked from the profile page, the modal opens via an intercepting route that overlays the current page. When navigated to directly (e.g. via URL or page refresh), the modal also opens and displays the form. See [Next.js Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals) and [Intercepting Routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes) for the pattern.
+- The app is intentionally minimal. Use the locators and patterns you consider best practice.
+- Organize your test files in a way that makes sense to you.
+- Document any assumptions or trade-offs in your PR description.
+
 ## Prerequisites
 
 - Node.js 20+
@@ -33,12 +42,7 @@ Write E2E tests covering responsive behavior and navigation.
 
 ## Task 5: CI Pipeline (Bonus)
 
-Create a GitHub Actions workflow that runs the Playwright tests on every pull request to `main`:
-
-- The workflow should install dependencies, build the app, and run the full test suite
-- Playwright test results should be visible in the PR (e.g. as a check, summary, or artifact)
-- The workflow should upload the Playwright HTML report as an artifact on failure
-- Tests should run in a CI-appropriate configuration (consider browser installation, workers, retries)
+Create a GitHub Actions workflow that runs on every pull request to `main`. Design a CI pipeline that would be optimal for us. Upload the Playwright HTML report as an artifact and ensure links to it are visible in the action (e.g. in the PR checks or workflow summary).
 
 ## Task 6: Test Infrastructure (Bonus)
 
@@ -54,13 +58,3 @@ Create a GitHub Actions workflow that runs the Playwright tests on every pull re
 3. Optionally include Tasks 5 and 6
 4. Ensure all tests pass locally: `npm run test`
 5. Submit a pull request with a clear description of your approach
-
-## Notes
-
-- **Unexpected behavior:** The app may contain bugs. If you encounter behavior that doesn't match the spec or what you'd expect, document it in your PR description — a failing test may indicate an app issue rather than a test error.
-- The app uses **React Hook Form** with **Zod** (via `zodResolver`) for client-side validation. Forms use `mode: "onBlur"` and display error messages via `role="alert"` elements.
-- Settings modals use **Next.js parallel routes** and **intercepting routes**. Each form has its own route (e.g. `/settings/profile/nickname`, `/settings/profile/bio`). When clicked from the profile page, the modal opens via an intercepting route that overlays the current page. When navigated to directly (e.g. via URL or page refresh), the modal should also open and display the form. See [Next.js Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals) and [Intercepting Routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes) for the pattern.
-- The app is intentionally minimal. Use the locators and patterns you consider best practice.
-- Organize your test files in a way that makes sense to you.
-- Document any assumptions or trade-offs in your PR description.
-

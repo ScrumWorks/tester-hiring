@@ -15,7 +15,7 @@ export default async function SettingsLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" >
       <Sidebar />
       <main className="md:pl-72 p-4 pt-20 md:pt-4">{children}</main>
       {modal}
