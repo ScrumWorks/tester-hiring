@@ -1,0 +1,60 @@
+name: Playwright E2E Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run E2E tests
+        run: npm test
+        env:
+          CI: true
+
+      - name: Upload Playwright HTML report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Write job summary
+        if: ${{ !cancelled() }}
+        run: |
+          echo "## 🎭 Playwright E2E Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Suite | Scenarios |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| \`@login\` Login Flow | 7 |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`@profile\` Profile Settings | 13 |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`@account\` Account Settings | 13 |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`@navigation\` Navigation & Responsive | 8 |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`@a11y\` Accessibility | 5 |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Total** | **46** |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 **HTML Report** → [Download from Artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> 📋 See [BUGS.md](BUGS.md) for documented application bugs" >> $GITHUB_STEP_SUMMARY
